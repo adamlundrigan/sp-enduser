@@ -99,6 +99,14 @@
  */
 //$settings['database-stats'] = false;
 
+/**
+ * Statistical graphs are read from an RRD; this specifies where to find it.
+ * Can be a file path or fully-qualified URL
+ *
+ * Default value: BASE . '/../rrd'
+ */
+//$settings['stats-graph-path'] = '/path/to/rrd';
+
 /*
  * Authentication is probably the second most important configuration
  * directive, as it specifies how end-users should identify themselves.

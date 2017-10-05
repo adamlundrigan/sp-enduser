@@ -52,6 +52,8 @@ class Settings
 	private $digestToAll = false;
 	private $digestSecret = null;
 	private $sessionName = null;
+
+	private $graphPath = BASE . '/../rrd';
 	
 	/**
 	 * Returns a shared Settings instance.
@@ -114,6 +116,7 @@ class Settings
 		$this->extract($this->twoFactorAuth, 'twofactorauth');
 		$this->extract($this->geoIP, 'geoip');
 		$this->extract($this->geoIPDatabase, 'geoip-database');
+		$this->extract($this->graphPath, 'stats-graph-path');
 
 		foreach ($this->nodeCredentials as $id => $cred) {
 			$username = isset($cred['username']) ? $cred['username'] : null;
@@ -529,7 +532,7 @@ class Settings
 	 */
 	public function getGraphPath()
 	{
-		return BASE . '/../rrd';
+		return $this->graphPath;
 	}
 
 	/**
