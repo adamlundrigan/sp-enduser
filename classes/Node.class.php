@@ -8,8 +8,9 @@ class Node
 	private $password;
 	private $serial;
 	private $tls;
+	private $timeout;
 	
-	public function __construct($id, $address, $username = null, $password = null, $serial = null, $tls = array())
+	public function __construct($id, $address, $username = null, $password = null, $serial = null, $tls = array(), $timeout = null)
 	{
 		$this->id = $id;
 		$this->address = $address;
@@ -17,6 +18,7 @@ class Node
 		$this->password = $password;
 		$this->serial = $serial;
 		$this->tls = $tls;
+		$this->timeout = is_numeric($timeout) ? (int)$timeout : 5;
 	}
 	
 	public function soap($async = false, $username = null, $password = null, $serial = null)
@@ -34,7 +36,7 @@ class Node
 			'uri' => 'urn:halon',
 			'login' => $username,
 			'password' => $password,
-			'connection_timeout' => 5,
+			'connection_timeout' => $this->timeout,
 			'features' => SOAP_SINGLE_ELEMENT_ARRAYS,
 			'compression' => SOAP_COMPRESSION_ACCEPT | (SOAP_COMPRESSION_GZIP | 0)
 			);

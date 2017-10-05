@@ -10,6 +10,7 @@ class Settings
 	
 	private $nodeCredentials = array();
 	private $nodes = array();
+	private $nodeDefaultTimeout = 5;
 	private $apiKey = null;
 	private $dbCredentials = array('dns' => null);
 	private $authSources = array(array('type' => 'server'));
@@ -75,6 +76,7 @@ class Settings
 		$this->settings = $settings;
 		
 		$this->extract($this->nodeCredentials, 'node');
+		$this->extract($this->nodeDefaultTimeout, 'node-default-timeout');
 		$this->extract($this->apiKey, 'api-key');
 		$this->extract($this->mailSender, 'mail.from');
 		$this->extract($this->publicURL, 'public-url');
@@ -120,7 +122,8 @@ class Settings
 			$password = isset($cred['password']) ? $cred['password'] : null;
 			$serial = isset($cred['serialno']) ? $cred['serialno'] : null;
 			$tls = isset($cred['tls']) ? $cred['tls'] : array();
-			$this->nodes[] = new Node($id, $cred['address'], $username, $password, $serial, $tls);
+			$timeout = isset($cred['timeout']) ? (int)$cred['timeout'] : $this->nodeDefaultTimeout;
+			$this->nodes[] = new Node($id, $cred['address'], $username, $password, $serial, $tls, $timeout);
 		}
 		
 		if(!$this->publicURL)

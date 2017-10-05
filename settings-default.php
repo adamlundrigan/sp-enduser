@@ -18,6 +18,20 @@
  * create specific access rights so that if this end-user web is compromised,
  * your gateways are not. In some cases, even read-only access is good enough
  * for this application.
+ *
+ * The default SOAP connection timeout is 5 seconds.  To change the global
+ * default, set `node-default-timeout` key to the required value
+ *
+ *     $settings['node-default-timeout'] = 10;
+ *
+ * It is also possible to override the connection timeout on a per-node basis
+ * by specifying it in the `timeout` key of the node definition:
+ *
+ *    $settings['node'][] = array(
+ *        'address' => 'https://10.2.0.30/',
+ *        'timeout' => 15,
+ *    );
+ *
  */
 
 //$settings['node'][] = array(
