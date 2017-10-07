@@ -359,8 +359,6 @@ class Settings
 	 */
 	public function getDisplayQuarantine()
 	{
-		if ($this->getUseDatabaseLog())
-			return false;
 		return $this->displayQuarantine;
 	}
 
@@ -369,8 +367,6 @@ class Settings
 	 */
 	public function getDisplayArchive()
 	{
-		if ($this->getUseDatabaseLog())
-			return false;
 		return $this->displayArchive;
 	}
 
