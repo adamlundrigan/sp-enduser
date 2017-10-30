@@ -12,7 +12,11 @@ define('BASE', dirname(__FILE__).'/..');
 require_once BASE.'/inc/core.php';
 require_once BASE.'/inc/utils.php';
 
-$max = 5000000;
+if ( 'count' !== $settings->getDatabaseLogCleanType() ) {
+	die('this message log cleaning method is not active');
+}
+
+$max = (int)$settings->getDatabaseLogCleanThreshold();
 $chunks = 1000;
 
 foreach ($settings->getMessagelogTables() as $table)

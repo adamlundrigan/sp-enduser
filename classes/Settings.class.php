@@ -48,6 +48,9 @@ class Settings
 	private $twoFactorAuth = false;
 	private $geoIP = false;
 	private $geoIPDatabase = null;
+
+	private $databaseLogCleanType = 'count';
+	private $databaseLogCleanThreshold = 5000000;
 	
 	private $digestToAll = false;
 	private $digestSecret = null;
@@ -102,6 +105,8 @@ class Settings
 		$this->extract($this->displayListener, 'display-listener');
 		$this->extract($this->displayTransport, 'display-transport');
 		$this->extract($this->useDatabaseLog, 'database-log');
+		$this->extract($this->databaseLogCleanType, 'database-log-cleanup.type');
+		$this->extract($this->databaseLogCleanThreshold, 'database-log-cleanup.threshold');
 		$this->extract($this->useDatabaseStats, 'database-stats');
 		$this->extract($this->dbCredentials, 'database');
 		$this->extract($this->authSources, 'authentication');
@@ -598,5 +603,21 @@ class Settings
 		else
 			$tables[] = 'messagelog';
 		return $tables;
+	}
+
+	/**
+	 * Returns the configured method for cleaning out message log tables
+	 */
+	public function getDatabaseLogCleanType()
+	{
+		return $this->databaseLogCleanType;
+	}
+
+	/**
+	 * Returns the configured threshold to use when cleaning out message log tables
+	 */
+	public function getDatabaseLogCleanThreshold()
+	{
+		return $this->databaseLogCleanThreshold;
 	}
 }

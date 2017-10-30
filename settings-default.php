@@ -88,6 +88,22 @@
  */
 //$settings['database-log'] = false;
 
+/**
+ * Log entries stored in the central database server can be cleaned up periodically
+ * based on one of two criteria
+ *
+ *  - "count": total number of records in each table
+ *  - "age": total number of seconds elapsed since the record was created
+ *
+ * A cron script is provided to implement each type of cleanup:
+ *
+ *  - "count": `php cron.php.txt cleanmessagelog`
+ *  - "age": `php cron.php.txt cleanmessagelogbyage`
+ *
+ */
+//$settings['database-log-cleanup'] = [ 'type' => 'count', 'threshold' => 5000000 ];
+//$settings['database-log-cleanup'] = [ 'type' => 'age', 'threshold' => (3600*24*14) ];
+
 /*
  * Stats are normally read from the nodes directly, but for performance, you can
  * instead opt to configure your nodes to stat to a central database server, as
