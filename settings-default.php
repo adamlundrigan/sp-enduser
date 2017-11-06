@@ -220,6 +220,7 @@
 //		'count_limit' => 100,			// At which number the limit is exceeded 
 //		'action' => 'DEFER',			// Action taken if limit is exceeded
 //		'search_filter' => 'from=$entry',	// Search filter for the "messages" page
+//		'node' => 0,				// Index of the node in $settings['nodes'] on which to run the query
 //		);
 
 /*
