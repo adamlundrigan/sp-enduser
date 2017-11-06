@@ -226,7 +226,8 @@ if ($_POST['page'] == 'rates')
 		if (!isset($ratelimits[$_POST['rate']])) die(json_encode(array('error' => 'Invalid ratelimit')));
 		$rate = $ratelimits[$_POST['rate']];
 
-		$nodeBackend = new NodeBackend($settings->getNode(0));
+		$nodeIndex = isset($rate['node']) ? (int)$rate['node'] : 0;
+		$nodeBackend = new NodeBackend($settings->getNode($nodeIndex));
 
 		// Compensate for count being '> X' in the API
 		if (isset($rate['count_min']))
